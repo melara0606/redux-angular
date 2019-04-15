@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 // Firebase
@@ -15,6 +15,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 // Routes app
 import { AppRoutingModule } from './app.routing';
 
+// Chart.js
+
+import { ChartsModule } from 'ng2-charts';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -27,6 +31,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 import { environment } from 'src/environments/environment';
+import { IngreoEgresoOrdenPipe } from './ingreso-egreso/ingreo-egreso-orden.pipe';
 
 
 @NgModule({
@@ -40,12 +45,15 @@ import { environment } from 'src/environments/environment';
     DetalleComponent,
     NavbarComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    IngreoEgresoOrdenPipe
   ],
   imports: [
     FormsModule,
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
     StoreModule.forRoot(appReducers),

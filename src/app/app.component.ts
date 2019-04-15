@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.authService.initialStatus();
     // this.authService.initialStatus()
     //   .subscribe(fbUser => console.log(fbUser));
   }

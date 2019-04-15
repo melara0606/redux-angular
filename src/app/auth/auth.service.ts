@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { User } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private afAuth: AngularFireAuth, private router: Router ) { }
+  private user: User;
+  constructor(private afAuth: AngularFireAuth, private router: Router) { }
 
   initialStatus() {
-    return this.afAuth.authState;
+    this.afAuth.authState.subscribe((fbUser: User) => {
+      this.user = fbUser;
+    });
   }
 
   crearUsuario(nombre: string, email: string, password: string) {
@@ -35,5 +38,9 @@ export class AuthService {
         return fbUser != null;
       })
     );
+  }
+
+  getUsuario(): User {
+    return this.user;
   }
 }

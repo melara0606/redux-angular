@@ -5,7 +5,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  loading: true
+  loading: false
 };
 
 export enum UIActionsTypes {
