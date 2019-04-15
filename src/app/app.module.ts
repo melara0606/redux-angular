@@ -5,7 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+// Ngrx-store
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './app.reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 // Routes app
 import { AppRoutingModule } from './app.routing';
@@ -20,8 +25,9 @@ import { DetalleComponent } from './ingreso-egreso/detalle.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+
 import { environment } from 'src/environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 
 @NgModule({
   declarations: [
@@ -40,9 +46,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireAuthModule
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent]
