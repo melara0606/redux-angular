@@ -1,3 +1,7 @@
 .register input.form-control {
   height: auto !important;
 }
+
+.cursor {
+  cursor: pointer;
+}
