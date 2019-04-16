@@ -9,7 +9,6 @@ import { IngresoEgresoService } from 'src/app/ingreso-egreso/ingreso-egreso.serv
   styles: []
 })
 export class SidebarComponent {
-
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -23,5 +22,4 @@ export class SidebarComponent {
         this.ingresoEgresoService.onCancelarSubscription();
       });
   }
-
 }
